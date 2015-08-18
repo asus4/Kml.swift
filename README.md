@@ -19,3 +19,7 @@ Simple KML parser for Swift.
 - Point
 - Folder
 - Placemark
+
+## License
+
+MIT
