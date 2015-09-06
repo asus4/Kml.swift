@@ -1,0 +1,16 @@
+Pod::Spec.new do |s|
+
+  s.name         = "Kml.swift"
+  s.version      = "0.1.0"
+  s.summary      = "Simple KML parser for Swift."
+
+  s.homepage     = "https://github.com/asus4/Kml.swift"
+  s.license = { :type => 'MIT', :file => 'LICENSE' }
+  s.author             = { "asus4" => "koki.ibukuro@gmail.com" }
+  s.social_media_url   = "https://twitter.com/asus4"
+  
+  s.source = { :git => 'https://github.com/asus4/Kml.swift.git', :tag => s.version }
+  s.source_files = 'Source/*.swift'
+  s.dependency "AEXML"
+
+end
