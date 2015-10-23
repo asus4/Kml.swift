@@ -61,18 +61,17 @@ public class KMLElement {
                 continue
             }
             if let klass:KMLElement.Type = KMLConfig.tags[child.name] {
-                children.append(klass(child))
+                children.append(klass.init(child))
             }
         }
     }
 
     class func parseCoordinates(element: AEXMLElement) -> [CLLocationCoordinate2D] {
         var coordinates: [CLLocationCoordinate2D] = []
-        let lines: [String] = split(element.stringValue,
-            allowEmptySlices: false,
-            isSeparator: {$0 == "\n" || $0 == " "})
+        let lines: [String] = element.stringValue.characters.split(allowEmptySlices: false,
+            isSeparator: {$0 == "\n" || $0 == " "}).map { String($0) }
         for line: String in lines {
-            let points: [String] = split(line, allowEmptySlices: false, isSeparator: {$0 == ","})
+            let points: [String] = line.characters.split(allowEmptySlices: false, isSeparator: {$0 == ","}).map { String($0) }
             assert(points.count >= 2, "points lenth is \(points)")
             coordinates.append(CLLocationCoordinate2DMake(atof(points[1]), atof(points[0])))
         }
@@ -100,7 +99,7 @@ public class KMLElement {
                 elements.append(theChild)
             }
             if let matchs: [T] = child.findElements(T.self) {
-                elements.extend(matchs)
+                elements.appendContentsOf(matchs)
             }
         }
         return elements
@@ -130,7 +129,7 @@ public class KMLStyle: KMLElement, KMLApplyStyle {
     var styleId: String = ""
 
     public required init(_ element: AEXMLElement) {
-        if let _id: String = element.attributes["id"] as? String {
+        if let _id: String = element.attributes["id"] {
             styleId = _id
         }
         super.init(element)
@@ -290,7 +289,7 @@ public class KMLPoint: KMLElement {
     }
 
     public class func parseCoordinate(str: String) -> CLLocationCoordinate2D {
-        let points: [String] = split(str, allowEmptySlices: false, isSeparator: {$0 == ","})
+        let points: [String] = str.characters.split(allowEmptySlices: false, isSeparator: {$0 == ","}).map { String($0) }
         assert(points.count >= 2, "points lenth is \(points)")
         return CLLocationCoordinate2DMake(atof(points[1]), atof(points[0]))
     }
@@ -323,8 +322,8 @@ public protocol KMLOverlay: MKOverlay {
 
 public class KMLAnnotation: NSObject, MKAnnotation {
     public var coordinate: CLLocationCoordinate2D
-    public var title: String!
-    public var subtitle: String!
+    public var title: String?
+    public var subtitle: String?
 
     init(_ coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
@@ -378,21 +377,20 @@ public class KMLDocument: KMLElement {
     public var annotations: [MKAnnotation] = []
     public var styles:Dictionary<String, KMLStyle> = [:]
 
-    convenience init (url: NSURL) {
+    public convenience init (url: NSURL) {
         var element: AEXMLElement?
 
         if let data = NSData(contentsOfURL: url) {
-            var error: NSError?
-            if let xmlDoc = AEXMLDocument(xmlData: data, error: &error) {
+            do {
+                let xmlDoc = try AEXMLDocument(xmlData: data)
                 element = xmlDoc.root["Document"]
-            }
-            else {
-                println("Could not parse XML.\tdescription: \(error?.localizedDescription)\t info: \(error?.userInfo)")
+            } catch _ {
+                print("Could not parse XML.")
             }
             self.init(element!)
         }
         else {
-            println("Doesn't exist file at path - \(url)")
+            print("Doesn't exist file at path - \(url)")
             self.init(AEXMLElement(AEXMLElement.errorElementName, value: "Doesn't exist file at path \(url)"))
         }
 
@@ -422,7 +420,7 @@ public class KMLDocument: KMLElement {
         }
         if let _styles: [KMLStyleMap] = findElements(KMLStyleMap.self) {
             for style: KMLStyleMap in _styles {
-                for (key: String, value: String) in style.pairs {
+                for (key, value): (String, String) in style.pairs {
                     style.addPairsRef(key, style: self.styles[value]!)
                 }
                 self.styles[style.styleId] = style
@@ -488,7 +486,7 @@ public class KMLDocument: KMLElement {
 
 private extension String {
     func subString(from: Int) -> String {
-        return self.substringFromIndex(advance(self.startIndex, from))
+        return self.substringFromIndex(self.startIndex.advancedBy(from))
     }
 }
 
@@ -505,7 +503,7 @@ private extension UIColor {
         let scanner = NSScanner(string: kmlhex)
         var hexValue: CUnsignedLongLong = 0
         if scanner.scanHexLongLong(&hexValue) {
-            switch (count(kmlhex)) {
+            switch (kmlhex.characters.count) {
             case 3:
                 red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
                 green = CGFloat((hexValue & 0x0F0) >> 4)       / 15.0
@@ -526,10 +524,10 @@ private extension UIColor {
                 green  = CGFloat((hexValue & 0x0000FF00) >> 8)  / 255.0
                 red = CGFloat(hexValue & 0x000000FF)         / 255.0
             default:
-                print("Invalid RGB string, number should be either 3, 4, 6 or 8")
+                print("Invalid RGB string, number should be either 3, 4, 6 or 8", terminator: "")
             }
         } else {
-            println("Scan hex error")
+            print("Scan hex error")
         }
         self.init(red:red, green:green, blue:blue, alpha:alpha)
     }
