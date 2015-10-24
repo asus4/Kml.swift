@@ -51,7 +51,7 @@ extension MainViewController: UITableViewDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let klass = dataSource[indexPath.row].klass
         let nibName = dataSource[indexPath.row].nib
-        let controller: UIViewController = klass(nibName: nibName, bundle: nil)
+        let controller: UIViewController = klass.init(nibName: nibName, bundle: nil)
         controller.title = dataSource[indexPath.row].label
         self.navigationController?.pushViewController(controller, animated: true)
     }
