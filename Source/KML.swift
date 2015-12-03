@@ -66,7 +66,7 @@ public class KMLElement {
                 self.name = child.stringValue
                 continue
             }
-            if let klass:KMLElement.Type = KMLConfig.tags[child.name] {
+            if let klass: KMLElement.Type = KMLConfig.tags[child.name] {
                 children.append(klass.init(child))
             }
         }
@@ -85,7 +85,7 @@ public class KMLElement {
     }
 
     // return First emelent
-    public func findElement<T:KMLElement>(type:T.Type) -> T! {
+    public func findElement<T: KMLElement>(type: T.Type) -> T! {
         for child: KMLElement in children {
             if let theChild: T = child as? T {
                 return theChild
@@ -98,7 +98,7 @@ public class KMLElement {
     }
 
     // return All element
-    public func findElements<T:KMLElement>(type:T.Type) -> [T]! {
+    public func findElements<T: KMLElement>(type: T.Type) -> [T]! {
         var elements: [T] = []
         for child: KMLElement in children {
             if let theChild: T = child as? T {
@@ -111,7 +111,7 @@ public class KMLElement {
         return elements
     }
 
-    public func hasElement<T:KMLElement>(type:T.Type) -> Bool {
+    public func hasElement<T: KMLElement>(type: T.Type) -> Bool {
         for child: KMLElement in children {
             if child is T {
                 return true
@@ -161,9 +161,9 @@ public class KMLStyle: KMLElement, KMLApplyStyle {
 
 public class KMLStyleMap: KMLStyle {
 
-    var pairs:Dictionary<String, String>
-    var pairsRef:Dictionary<String, KMLStyle> = [:]
-    var normalStyle:KMLStyle? {
+    var pairs: Dictionary<String, String>
+    var pairsRef: Dictionary<String, KMLStyle> = [:]
+    var normalStyle: KMLStyle? {
         return pairsRef["normal"]
     }
 
@@ -251,7 +251,7 @@ public class KMLIconStyle: KMLColorStyleGroup {
     public var scale: Double = 1.0
     public var heading: Double = 0.0
     public var icon: KMLIcon?
-    
+
     public required init(_ element: AEXMLElement) {
         super.init(element)
         for child: AEXMLElement in element.children {
@@ -269,7 +269,7 @@ public class KMLIconStyle: KMLColorStyleGroup {
 
 }
 
-public class KMLBalloonStyle : KMLElement {
+public class KMLBalloonStyle: KMLElement {
     public var bgColor: UIColor = UIColor.blackColor()
     public var textColor: UIColor = UIColor.blackColor()
     public var text: String = ""
@@ -290,8 +290,8 @@ public class KMLBalloonStyle : KMLElement {
     }
 
 }
-    
-public class KMLIcon : KMLElement {
+
+public class KMLIcon: KMLElement {
     public var href: String!
     public required init(_ element: AEXMLElement) {
         for child: AEXMLElement in element.children {
@@ -318,7 +318,7 @@ public class KMLPolygon: KMLElement {
 
     public var tessellate: Bool = false
     public var coordinates: [CLLocationCoordinate2D]
-    public var outerBoundaryCoordinates:[CLLocationCoordinate2D] = []
+    public var outerBoundaryCoordinates: [CLLocationCoordinate2D] = []
     public var innerBoundariesCoordinates: [[CLLocationCoordinate2D]] = []
 
     public required init(_ element: AEXMLElement) {
@@ -390,10 +390,10 @@ public class KMLPoint: KMLElement {
 public class KMLPlacemark: KMLElement {
     public var styleUrl: String = ""
     public var description: String = ""
-    public var point:KMLPoint?
-    public var lineString:KMLLineString?
-    public var polygon:KMLPolygon?
-    public var style:KMLStyle?
+    public var point: KMLPoint?
+    public var lineString: KMLLineString?
+    public var polygon: KMLPolygon?
+    public var style: KMLStyle?
 
     public required init(_ element: AEXMLElement) {
         styleUrl = element["styleUrl"].stringValue.subString(1) // remove #
@@ -402,7 +402,7 @@ public class KMLPlacemark: KMLElement {
             description = _description.stringValue
         }
         super.init(element)
-        
+
         if let pointGeometry = findElement(KMLPoint) {
             point = pointGeometry
         } else if let lineStringGeometry = findElement(KMLLineString) {
@@ -424,7 +424,7 @@ public class KMLAnnotation: NSObject, MKAnnotation {
     public var coordinate: CLLocationCoordinate2D
     public var title: String?
     public var subtitle: String?
-    public var style:KMLStyle?
+    public var style: KMLStyle?
 
     init(_ coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
@@ -440,8 +440,7 @@ public class KMLOverlayPolygon: MKPolygon, KMLOverlay {
 
         if style != nil {
             style?.applyStyle(renderer)
-        }
-        else {
+        } else {
             renderer.fillColor = UIColor(red: 0.6, green: 1.0, blue: 0.5, alpha: 0.2)
             renderer.strokeColor = UIColor(red: 1.0, green: 0.6, blue: 0.5, alpha: 0.8)
             renderer.lineWidth = 2.0
@@ -460,8 +459,7 @@ public class KMLOverlayPolyline: MKPolyline, KMLOverlay {
 
         if style != nil {
             style?.applyStyle(renderer)
-        }
-        else {
+        } else {
             renderer.strokeColor = UIColor(red: 0.6, green: 0.6, blue: 1.0, alpha: 0.8)
             renderer.lineWidth = 2.0
         }
@@ -475,9 +473,9 @@ public class KMLOverlayPolyline: MKPolyline, KMLOverlay {
 public class KMLDocument: KMLElement {
     public var overlays: [MKOverlay] = []
     public var annotations: [KMLAnnotation] = []
-    public var styles:Dictionary<String, KMLStyle> = [:]
-    public var placemarks:[KMLPlacemark] = []
-    
+    public var styles: Dictionary<String, KMLStyle> = [:]
+    public var placemarks: [KMLPlacemark] = []
+
     public required init(_ element: AEXMLElement) {
         super.init(element)
         initStyle()
@@ -489,7 +487,7 @@ public class KMLDocument: KMLElement {
         }
     }
 
-    public convenience init? (url: NSURL, generateMapKitClasses:Bool=true) {
+    public convenience init? (url: NSURL, generateMapKitClasses: Bool=true) {
         var element: AEXMLElement?
 
         if let data = NSData(contentsOfURL: url) {
@@ -501,15 +499,15 @@ public class KMLDocument: KMLElement {
                 return nil
             }
             self.init(element!, generateMapKitClasses:generateMapKitClasses)
-        }
-        else {
+        } else {
             print("Doesn't exist file at path - \(url)")
-            self.init(AEXMLElement(AEXMLElement.errorElementName, value: "Doesn't exist file at path \(url)"), generateMapKitClasses:generateMapKitClasses)
+            let errorElement = AEXMLElement(AEXMLElement.errorElementName, value: "Doesn't exist file at path \(url)")
+            self.init(errorElement, generateMapKitClasses:generateMapKitClasses)
         }
 
     }
 
-    public convenience init(_ element: AEXMLElement, generateMapKitClasses:Bool) {
+    public convenience init(_ element: AEXMLElement, generateMapKitClasses: Bool) {
         self.init(element)
         if generateMapKitClasses {
             initOverlay()
@@ -556,18 +554,17 @@ public class KMLDocument: KMLElement {
 
             for overlay: KMLOverlay in overlays {
                 overlay.style = placemark.style
-                
+
                 self.overlays.append(overlay)
             }
         }
     }
-    
-    private func findStyle(forPlacemark placemark:KMLPlacemark) -> KMLStyle? {
-        var foundStyle:KMLStyle?
+
+    private func findStyle(forPlacemark placemark: KMLPlacemark) -> KMLStyle? {
+        var foundStyle: KMLStyle?
         if let style: KMLStyle = styles[placemark.styleUrl] {
             foundStyle = style
-        }
-        else if let style: KMLStyle = placemark.findElement(KMLStyle.self) {
+        } else if let style: KMLStyle = placemark.findElement(KMLStyle.self) {
             foundStyle = style
         } else {
             foundStyle = nil
@@ -578,7 +575,7 @@ public class KMLDocument: KMLElement {
         }
         return foundStyle
     }
-    
+
     private func initAnnotation() {
         for pointPlacemark: KMLPlacemark in placemarks {
             if let point: KMLPoint = pointPlacemark.point {
@@ -592,7 +589,7 @@ public class KMLDocument: KMLElement {
         }
     }
 
-    public class func parse(url: NSURL, generateMapKitClasses:Bool=true, callback: (KMLDocument) -> Void) {
+    public class func parse(url: NSURL, generateMapKitClasses: Bool=true, callback: (KMLDocument) -> Void) {
         // Background Task
         let bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         let mainQueue: dispatch_queue_t = dispatch_get_main_queue()
@@ -627,7 +624,7 @@ private extension UIColor {
         let scanner = NSScanner(string: kmlhex)
         var hexValue: CUnsignedLongLong = 0
         if scanner.scanHexLongLong(&hexValue) {
-            switch (kmlhex.characters.count) {
+            switch kmlhex.characters.count {
             case 3:
                 red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
                 green = CGFloat((hexValue & 0x0F0) >> 4)       / 15.0
