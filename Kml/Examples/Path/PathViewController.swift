@@ -40,7 +40,7 @@ class PathViewController: UIViewController {
 }
 
 extension PathViewController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer! {
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if let overlayPolyline = overlay as? KMLOverlayPolyline {
             // return MKPolylineRenderer
             return overlayPolyline.renderer()
@@ -49,8 +49,6 @@ extension PathViewController: MKMapViewDelegate {
             // return MKPolygonRenderer
             return overlayPolygon.renderer()
         }
-        else {
-            return nil
-        }
+        return MKOverlayRenderer(overlay: overlay)
     }
 }

@@ -28,7 +28,7 @@ class MainViewController: UITableViewController {
     }
 }
 
-extension MainViewController: UITableViewDataSource {
+extension MainViewController { // UITableViewDataSource
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -39,7 +39,7 @@ extension MainViewController: UITableViewDataSource {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("Sample") as? UITableViewCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("Sample") {
             cell.textLabel?.text = dataSource[indexPath.row].label
             return cell
         }
@@ -47,7 +47,7 @@ extension MainViewController: UITableViewDataSource {
     }
 }
 
-extension MainViewController: UITableViewDelegate {
+extension MainViewController { // UITableViewDelegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let klass = dataSource[indexPath.row].klass
         let nibName = dataSource[indexPath.row].nib

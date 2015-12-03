@@ -20,7 +20,7 @@
 		78E3D7DE1B815BE000170097 /* KmlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E3D7DD1B815BE000170097 /* KmlTests.swift */; };
 		78FACAA31B81EF0A0078BF26 /* KML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FACAA21B81EF0A0078BF26 /* KML.swift */; };
 		78FACAA51B81EF490078BF26 /* KML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FACAA21B81EF0A0078BF26 /* KML.swift */; };
-		ED834E7B566C17C53BF2F61A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B3E70349A0F777E14510F3 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		ED834E7B566C17C53BF2F61A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B3E70349A0F777E14510F3 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -332,7 +332,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if type /usr/local/bin/swiftlint 2>/dev/null 1>/dev/null\nthen\n    /usr/local/bin/swiftlint lint --path Source\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint --path Source\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		8AD06ADC0DC98DDB39BB54F1 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
