@@ -140,8 +140,8 @@ public class KMLStyle: KMLElement, KMLApplyStyle {
 
     public required init(_ element: AEXMLElement) {
         super.init(element)
-        if let _id = element.attributes["id"] as? String? {
-            styleId = _id!
+        if let _id: String! = element.attributes["id"] as? String? {
+            styleId = _id
             polyStyle = findElement(KMLPolyStyle)
             lineStyle = findElement(KMLLineStyle)
             iconStyle = findElement(KMLIconStyle)
