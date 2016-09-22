@@ -55,15 +55,15 @@ public struct KMLConfig {
 }
 
 // MARK: - Base classes
-public class KMLElement {
+open class KMLElement {
 
-    public var name: String = ""
-    public var children: [KMLElement] = []
+    open var name: String = ""
+    open var children: [KMLElement] = []
 
     public required init(_ element: AEXMLElement) {
         for child: AEXMLElement in element.children {
             if child.name == "name" {
-                self.name = child.stringValue
+                self.name = child.string
                 continue
             }
             if let klass: KMLElement.Type = KMLConfig.tags[child.name] {
@@ -72,12 +72,11 @@ public class KMLElement {
         }
     }
 
-    class func parseCoordinates(element: AEXMLElement) -> [CLLocationCoordinate2D] {
+    class func parseCoordinates(_ element: AEXMLElement) -> [CLLocationCoordinate2D] {
         var coordinates: [CLLocationCoordinate2D] = []
-        let lines: [String] = element.stringValue.characters.split(allowEmptySlices: false,
-            isSeparator: {$0 == "\n" || $0 == " "}).map { String($0) }
+        let lines: [String] = element.string.characters.split(omittingEmptySubsequences: true, whereSeparator:  {$0 == "\n" || $0 == " "}).map { String($0) }
         for line: String in lines {
-            let points: [String] = line.characters.split(allowEmptySlices: false, isSeparator: {$0 == ","}).map { String($0) }
+            let points: [String] = line.characters.split(omittingEmptySubsequences: true, whereSeparator: {$0 == ","}).map { String($0) }
             assert(points.count >= 2, "points lenth is \(points)")
             coordinates.append(CLLocationCoordinate2DMake(atof(points[1]), atof(points[0])))
         }
@@ -85,7 +84,7 @@ public class KMLElement {
     }
 
     // return First emelent
-    public func findElement<T: KMLElement>(type: T.Type) -> T! {
+    open func findElement<T: KMLElement>(_ type: T.Type) -> T! {
         for child: KMLElement in children {
             if let theChild: T = child as? T {
                 return theChild
@@ -98,20 +97,20 @@ public class KMLElement {
     }
 
     // return All element
-    public func findElements<T: KMLElement>(type: T.Type) -> [T]! {
+    open func findElements<T: KMLElement>(_ type: T.Type) -> [T]! {
         var elements: [T] = []
         for child: KMLElement in children {
             if let theChild: T = child as? T {
                 elements.append(theChild)
             }
             if let matchs: [T] = child.findElements(T.self) {
-                elements.appendContentsOf(matchs)
+                elements.append(contentsOf: matchs)
             }
         }
         return elements
     }
 
-    public func hasElement<T: KMLElement>(type: T.Type) -> Bool {
+    open func hasElement<T: KMLElement>(_ type: T.Type) -> Bool {
         for child: KMLElement in children {
             if child is T {
                 return true
@@ -127,29 +126,29 @@ public class KMLElement {
 // MARK: - Style
 
 protocol KMLApplyStyle {
-    func applyStyle(renderer: MKOverlayPathRenderer)
+    func applyStyle(_ renderer: MKOverlayPathRenderer)
 }
 
-public class KMLStyle: KMLElement, KMLApplyStyle {
+open class KMLStyle: KMLElement, KMLApplyStyle {
 
-    public var styleId: String = ""
-    public var polyStyle: KMLPolyStyle?
-    public var lineStyle: KMLLineStyle?
-    public var iconStyle: KMLIconStyle?
-    public var balloonStyle: KMLBalloonStyle?
+    open var styleId: String = ""
+    open var polyStyle: KMLPolyStyle?
+    open var lineStyle: KMLLineStyle?
+    open var iconStyle: KMLIconStyle?
+    open var balloonStyle: KMLBalloonStyle?
 
     public required init(_ element: AEXMLElement) {
         super.init(element)
-        if let _id: String! = element.attributes["id"] as? String? {
+        if let _id: String = element.attributes["id"] {
             styleId = _id
-            polyStyle = findElement(KMLPolyStyle)
-            lineStyle = findElement(KMLLineStyle)
-            iconStyle = findElement(KMLIconStyle)
-            balloonStyle = findElement(KMLBalloonStyle)
+            polyStyle = findElement(KMLPolyStyle.self)
+            lineStyle = findElement(KMLLineStyle.self)
+            iconStyle = findElement(KMLIconStyle.self)
+            balloonStyle = findElement(KMLBalloonStyle.self)
         }
     }
 
-    func applyStyle(renderer: MKOverlayPathRenderer) {
+    func applyStyle(_ renderer: MKOverlayPathRenderer) {
         if let style: KMLPolyStyle = findElement(KMLPolyStyle.self) {
             style.applyStyle(renderer)
         }
@@ -159,7 +158,7 @@ public class KMLStyle: KMLElement, KMLApplyStyle {
     }
 }
 
-public class KMLStyleMap: KMLStyle {
+open class KMLStyleMap: KMLStyle {
 
     var pairs: Dictionary<String, String>
     var pairsRef: Dictionary<String, KMLStyle> = [:]
@@ -170,31 +169,31 @@ public class KMLStyleMap: KMLStyle {
     public required init(_ element: AEXMLElement) {
         pairs = [:]
         for pair in element.children {
-            let styleUrl: String = pair["styleUrl"].stringValue
-            pairs[pair["key"].stringValue] = styleUrl.subString(1) // remove #
+            let styleUrl: String = pair["styleUrl"].string
+            pairs[pair["key"].string] = styleUrl.subString(1) // remove #
         }
         super.init(element)
     }
 
-    func addPairsRef(key: String, style: KMLStyle) {
+    func addPairsRef(_ key: String, style: KMLStyle) {
         pairsRef[key] = style
     }
 
-    override func applyStyle(renderer: MKOverlayPathRenderer) {
+    override func applyStyle(_ renderer: MKOverlayPathRenderer) {
         normalStyle?.applyStyle(renderer)
     }
 }
 
-public class KMLColorStyleGroup: KMLElement {
-    public var color: UIColor = UIColor.blackColor()
-    public var colorMode: Int = 0
+open class KMLColorStyleGroup: KMLElement {
+    open var color: UIColor = UIColor.black
+    open var colorMode: Int = 0
     public required init(_ element: AEXMLElement) {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "color":
-                color = UIColor(kmlhex: child.stringValue)
+                color = UIColor(kmlhex: child.string)
             case "colorMode":
-                colorMode = child.stringValue == "normal" ? 0 : 1
+                colorMode = child.string == "normal" ? 0 : 1
             default:
                 break
             }
@@ -203,17 +202,17 @@ public class KMLColorStyleGroup: KMLElement {
     }
 }
 
-public class KMLPolyStyle: KMLColorStyleGroup, KMLApplyStyle {
-    public var fill: Bool = true
-    public var outline: Bool = true
+open class KMLPolyStyle: KMLColorStyleGroup, KMLApplyStyle {
+    open var fill: Bool = true
+    open var outline: Bool = true
 
     public required init(_ element: AEXMLElement) {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "fill":
-                fill = child.boolValue
+                fill = child.bool
             case "outline":
-                outline = child.boolValue
+                outline = child.bool
             default:
                 break
             }
@@ -221,19 +220,19 @@ public class KMLPolyStyle: KMLColorStyleGroup, KMLApplyStyle {
         super.init(element)
     }
 
-    func applyStyle(renderer: MKOverlayPathRenderer) {
+    func applyStyle(_ renderer: MKOverlayPathRenderer) {
         renderer.fillColor = self.color
     }
 }
 
-public class KMLLineStyle: KMLColorStyleGroup, KMLApplyStyle {
-    public var width: Double = 1
+open class KMLLineStyle: KMLColorStyleGroup, KMLApplyStyle {
+    open var width: Double = 1
 
     public required init(_ element: AEXMLElement) {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "width":
-                width = child.doubleValue
+                width = child.double
             default:
                 break
             }
@@ -241,47 +240,47 @@ public class KMLLineStyle: KMLColorStyleGroup, KMLApplyStyle {
         super.init(element)
     }
 
-    func applyStyle(renderer: MKOverlayPathRenderer) {
+    func applyStyle(_ renderer: MKOverlayPathRenderer) {
         renderer.strokeColor = self.color
         renderer.lineWidth = CGFloat(self.width) * 0.5
     }
 }
 
-public class KMLIconStyle: KMLColorStyleGroup {
-    public var scale: Double = 1.0
-    public var heading: Double = 0.0
-    public var icon: KMLIcon?
+open class KMLIconStyle: KMLColorStyleGroup {
+    open var scale: Double = 1.0
+    open var heading: Double = 0.0
+    open var icon: KMLIcon?
 
     public required init(_ element: AEXMLElement) {
         super.init(element)
         for child: AEXMLElement in element.children {
             switch child.name {
             case "scale":
-                scale = child.doubleValue
+                scale = child.double
             case "heading":
-                heading = child.doubleValue
+                heading = child.double
             default:
                 break
             }
         }
-        icon = findElement(KMLIcon)
+        icon = findElement(KMLIcon.self)
     }
 
 }
 
-public class KMLBalloonStyle: KMLElement {
-    public var bgColor: UIColor = UIColor.blackColor()
-    public var textColor: UIColor = UIColor.blackColor()
-    public var text: String = ""
+open class KMLBalloonStyle: KMLElement {
+    open var bgColor: UIColor = UIColor.black
+    open var textColor: UIColor = UIColor.black
+    open var text: String = ""
     public required init(_ element: AEXMLElement) {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "bgColor":
-                bgColor = UIColor(kmlhex: child.stringValue)
+                bgColor = UIColor(kmlhex: child.string)
             case "textColor":
-                textColor = UIColor(kmlhex: child.stringValue)
+                textColor = UIColor(kmlhex: child.string)
             case "text":
-                text = child.stringValue
+                text = child.string
             default:
                 break
             }
@@ -291,13 +290,13 @@ public class KMLBalloonStyle: KMLElement {
 
 }
 
-public class KMLIcon: KMLElement {
-    public var href: String!
+open class KMLIcon: KMLElement {
+    open var href: String!
     public required init(_ element: AEXMLElement) {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "href":
-                href = child.stringValue
+                href = child.string
             default:
                 break
             }
@@ -310,22 +309,22 @@ public class KMLIcon: KMLElement {
 
 // MARK: - Drawings
 
-public class KMLMultiGeometry: KMLElement {
+open class KMLMultiGeometry: KMLElement {
 
 }
 
-public class KMLPolygon: KMLElement {
+open class KMLPolygon: KMLElement {
 
-    public var tessellate: Bool = false
-    public var coordinates: [CLLocationCoordinate2D]
-    public var outerBoundaryCoordinates: [CLLocationCoordinate2D] = []
-    public var innerBoundariesCoordinates: [[CLLocationCoordinate2D]] = []
+    open var tessellate: Bool = false
+    open var coordinates: [CLLocationCoordinate2D]
+    open var outerBoundaryCoordinates: [CLLocationCoordinate2D] = []
+    open var innerBoundariesCoordinates: [[CLLocationCoordinate2D]] = []
 
     public required init(_ element: AEXMLElement) {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "tessellate":
-                tessellate = child.intValue == 1 ? true : false
+                tessellate = child.int == 1 ? true : false
             case "outerBoundaryIs":
                 outerBoundaryCoordinates = KMLElement.parseCoordinates(child["LinearRing"]["coordinates"])
             case "innerBoundaryIs":
@@ -340,16 +339,16 @@ public class KMLPolygon: KMLElement {
 }
 
 
-public class KMLLineString: KMLElement {
+open class KMLLineString: KMLElement {
 
-    public var tessellate: Bool = false
-    public var coordinates: [CLLocationCoordinate2D] = []
+    open var tessellate: Bool = false
+    open var coordinates: [CLLocationCoordinate2D] = []
 
     public required init(_ element: AEXMLElement) {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "tessellate":
-                tessellate = child.intValue == 1 ? true : false
+                tessellate = child.int == 1 ? true : false
             case "coordinates":
                 coordinates = KMLElement.parseCoordinates(child)
             default:
@@ -361,15 +360,15 @@ public class KMLLineString: KMLElement {
 
 }
 
-public class KMLPoint: KMLElement {
+open class KMLPoint: KMLElement {
 
-    public var coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(0, 0)
+    open var coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(0, 0)
 
     public required init(_ element: AEXMLElement) {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "coordinates":
-                coordinates = KMLPoint.parseCoordinate(child.stringValue)
+                coordinates = KMLPoint.parseCoordinate(child.string)
             default:
                 break
             }
@@ -377,8 +376,8 @@ public class KMLPoint: KMLElement {
         super.init(element)
     }
 
-    public class func parseCoordinate(str: String) -> CLLocationCoordinate2D {
-        let points: [String] = str.characters.split(allowEmptySlices: false, isSeparator: {$0 == ","}).map { String($0) }
+    open class func parseCoordinate(_ str: String) -> CLLocationCoordinate2D {
+        let points: [String] = str.characters.split(omittingEmptySubsequences: true, whereSeparator: {$0 == ","}).map { String($0) }
         assert(points.count >= 2, "points length is \(points)")
         return CLLocationCoordinate2DMake(atof(points[1]), atof(points[0]))
     }
@@ -387,27 +386,27 @@ public class KMLPoint: KMLElement {
 
 // MARK: - Placemark
 
-public class KMLPlacemark: KMLElement {
-    public var styleUrl: String = ""
-    public var description: String = ""
-    public var point: KMLPoint?
-    public var lineString: KMLLineString?
-    public var polygon: KMLPolygon?
-    public var style: KMLStyle?
+open class KMLPlacemark: KMLElement {
+    open var styleUrl: String = ""
+    open var description: String = ""
+    open var point: KMLPoint?
+    open var lineString: KMLLineString?
+    open var polygon: KMLPolygon?
+    open var style: KMLStyle?
 
     public required init(_ element: AEXMLElement) {
-        styleUrl = element["styleUrl"].stringValue.subString(1) // remove #
+        styleUrl = element["styleUrl"].string.subString(1) // remove #
         let _description: AEXMLElement = element["description"]
-        if _description.name != AEXMLElement.errorElementName {
-            description = _description.stringValue
+        if element.error == nil {
+            description = _description.string
         }
         super.init(element)
 
-        if let pointGeometry = findElement(KMLPoint) {
+        if let pointGeometry = findElement(KMLPoint.self) {
             point = pointGeometry
-        } else if let lineStringGeometry = findElement(KMLLineString) {
+        } else if let lineStringGeometry = findElement(KMLLineString.self) {
             lineString = lineStringGeometry
-        } else if let polygonGeometry = findElement(KMLPolygon) {
+        } else if let polygonGeometry = findElement(KMLPolygon.self) {
             polygon = polygonGeometry
         }
     }
@@ -420,22 +419,22 @@ public protocol KMLOverlay: MKOverlay {
     func renderer() -> MKOverlayRenderer
 }
 
-public class KMLAnnotation: NSObject, MKAnnotation {
-    public var coordinate: CLLocationCoordinate2D
-    public var title: String?
-    public var subtitle: String?
-    public var style: KMLStyle?
+open class KMLAnnotation: NSObject, MKAnnotation {
+    open var coordinate: CLLocationCoordinate2D
+    open var title: String?
+    open var subtitle: String?
+    open var style: KMLStyle?
 
     init(_ coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
     }
 }
 
-public class KMLOverlayPolygon: MKPolygon, KMLOverlay {
+open class KMLOverlayPolygon: MKPolygon, KMLOverlay {
 
-    public var style: KMLStyle? = nil
+    open var style: KMLStyle? = nil
 
-    public func renderer() -> MKOverlayRenderer {
+    open func renderer() -> MKOverlayRenderer {
         let renderer: MKPolygonRenderer = MKPolygonRenderer(polygon: self)
 
         if style != nil {
@@ -450,11 +449,11 @@ public class KMLOverlayPolygon: MKPolygon, KMLOverlay {
     }
 }
 
-public class KMLOverlayPolyline: MKPolyline, KMLOverlay {
+open class KMLOverlayPolyline: MKPolyline, KMLOverlay {
 
-    public var style: KMLStyle? = nil
+    open var style: KMLStyle? = nil
 
-    public func renderer() -> MKOverlayRenderer {
+    open func renderer() -> MKOverlayRenderer {
         let renderer: MKPolylineRenderer = MKPolylineRenderer(polyline: self)
 
         if style != nil {
@@ -470,11 +469,11 @@ public class KMLOverlayPolyline: MKPolyline, KMLOverlay {
 
 // MARK: - Document
 
-public class KMLDocument: KMLElement {
-    public var overlays: [MKOverlay] = []
-    public var annotations: [KMLAnnotation] = []
-    public var styles: Dictionary<String, KMLStyle> = [:]
-    public var placemarks: [KMLPlacemark] = []
+open class KMLDocument: KMLElement {
+    open var overlays: [MKOverlay] = []
+    open var annotations: [KMLAnnotation] = []
+    open var styles: Dictionary<String, KMLStyle> = [:]
+    open var placemarks: [KMLPlacemark] = []
 
     public required init(_ element: AEXMLElement) {
         super.init(element)
@@ -487,12 +486,12 @@ public class KMLDocument: KMLElement {
         }
     }
 
-    public convenience init? (url: NSURL, generateMapKitClasses: Bool=true) {
+    public convenience init? (url: URL, generateMapKitClasses: Bool=true) {
         var element: AEXMLElement?
 
-        if let data = NSData(contentsOfURL: url) {
+        if let data = try? Data(contentsOf: url) {
             do {
-                let xmlDoc = try AEXMLDocument(xmlData: data)
+                let xmlDoc = try AEXMLDocument(xml: data)
                 element = xmlDoc.root["Document"]
             } catch _ {
                 print("Could not parse XML.")
@@ -501,7 +500,8 @@ public class KMLDocument: KMLElement {
             self.init(element!, generateMapKitClasses:generateMapKitClasses)
         } else {
             print("Doesn't exist file at path - \(url)")
-            let errorElement = AEXMLElement(AEXMLElement.errorElementName, value: "Doesn't exist file at path \(url)")
+            let errorElement = AEXMLElement(name: "AEXMLError", value: "Doesn't exist file at path \(url)")
+            errorElement.error = AEXMLError.parsingFailed
             self.init(errorElement, generateMapKitClasses:generateMapKitClasses)
         }
 
@@ -515,13 +515,13 @@ public class KMLDocument: KMLElement {
         }
     }
 
-    public var isError: Bool {
+    open var isError: Bool {
         get {
             return self.children.count == 0
         }
     }
 
-    private func initStyle() {
+    fileprivate func initStyle() {
         if let _styles: [KMLStyle] = findElements(KMLStyle.self) {
             for style: KMLStyle in _styles {
                 self.styles[style.styleId] = style
@@ -537,7 +537,7 @@ public class KMLDocument: KMLElement {
         }
     }
 
-    private func initOverlay() {
+    fileprivate func initOverlay() {
         for placemark: KMLPlacemark in placemarks {
 
             var overlays: [KMLOverlay] = []
@@ -560,7 +560,7 @@ public class KMLDocument: KMLElement {
         }
     }
 
-    private func findStyle(forPlacemark placemark: KMLPlacemark) -> KMLStyle? {
+    fileprivate func findStyle(forPlacemark placemark: KMLPlacemark) -> KMLStyle? {
         var foundStyle: KMLStyle?
         if let style: KMLStyle = styles[placemark.styleUrl] {
             foundStyle = style
@@ -576,7 +576,7 @@ public class KMLDocument: KMLElement {
         return foundStyle
     }
 
-    private func initAnnotation() {
+    fileprivate func initAnnotation() {
         for pointPlacemark: KMLPlacemark in placemarks {
             if let point: KMLPoint = pointPlacemark.point {
                 let annotation = KMLAnnotation(point.coordinates)
@@ -589,13 +589,13 @@ public class KMLDocument: KMLElement {
         }
     }
 
-    public class func parse(url: NSURL, generateMapKitClasses: Bool=true, callback: (KMLDocument) -> Void) {
+    open class func parse(_ url: URL, generateMapKitClasses: Bool=true, callback: @escaping (KMLDocument) -> Void) {
         // Background Task
-        let bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        let mainQueue: dispatch_queue_t = dispatch_get_main_queue()
-        dispatch_async(bgQueue, {
+        let bgQueue = DispatchQueue.global(qos: .default)
+        let mainQueue: DispatchQueue = DispatchQueue.main
+        bgQueue.async(execute: {
             if let doc: KMLDocument = KMLDocument(url: url, generateMapKitClasses:generateMapKitClasses) {
-                dispatch_async(mainQueue, {
+                mainQueue.async(execute: {
                     callback(doc)
                 })
             }
@@ -606,8 +606,8 @@ public class KMLDocument: KMLElement {
 // MARK: - Private extensions
 
 private extension String {
-    func subString(from: Int) -> String {
-        return self.substringFromIndex(self.startIndex.advancedBy(from))
+    func subString(_ from: Int) -> String {
+        return self.substring(from: self.characters.index(self.startIndex, offsetBy: from))
     }
 }
 
@@ -621,9 +621,9 @@ private extension UIColor {
         var blue: CGFloat = 0.0
         var alpha: CGFloat = 1.0
 
-        let scanner = NSScanner(string: kmlhex)
+        let scanner = Scanner(string: kmlhex)
         var hexValue: CUnsignedLongLong = 0
-        if scanner.scanHexLongLong(&hexValue) {
+        if scanner.scanHexInt64(&hexValue) {
             switch kmlhex.characters.count {
             case 3:
                 red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0

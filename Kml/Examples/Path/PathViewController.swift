@@ -26,10 +26,10 @@ class PathViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    private func loadKml(path: String) {
-        let url = NSBundle.mainBundle().URLForResource(path, withExtension: "kml")
+    fileprivate func loadKml(_ path: String) {
+        let url = Bundle.main.url(forResource: path, withExtension: "kml")
         KMLDocument.parse(url!, callback:
-            { [unowned self] (KMLDocument kml) in
+            { [unowned self] (kml) in
                 // Add overlays
                 self.mapView.addOverlays(kml.overlays)
                 // Add annotations
@@ -40,7 +40,7 @@ class PathViewController: UIViewController {
 }
 
 extension PathViewController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let overlayPolyline = overlay as? KMLOverlayPolyline {
             // return MKPolylineRenderer
             return overlayPolyline.renderer()

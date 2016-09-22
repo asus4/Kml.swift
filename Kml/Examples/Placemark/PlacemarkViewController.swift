@@ -25,10 +25,10 @@ class PlacemarkViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    private func loadKml(path: String) {
-        let url = NSBundle.mainBundle().URLForResource(path, withExtension: "kml")
+    fileprivate func loadKml(_ path: String) {
+        let url = Bundle.main.url(forResource: path, withExtension: "kml")
         KMLDocument.parse(url!, callback:
-            { [unowned self] (KMLDocument kml) in
+            { [unowned self] (kml) in
                 // Add and Zoom to annotations.
                 self.mapView.showAnnotations(kml.annotations, animated: true)
             }
