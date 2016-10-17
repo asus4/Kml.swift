@@ -51,9 +51,9 @@
 		78E3D7DC1B815BE000170097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E3D7DD1B815BE000170097 /* KmlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KmlTests.swift; sourceTree = "<group>"; };
 		78FACAA21B81EF0A0078BF26 /* KML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KML.swift; sourceTree = "<group>"; };
-		97D85CDBDFCCD01F9449494B /* Pods-Kml.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kml/Pods-Kml.debug.xcconfig"; sourceTree = "<group>"; };
+		96833CD4EA7EA91D7D8331B4 /* Pods-Kml.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kml/Pods-Kml.release.xcconfig"; sourceTree = "<group>"; };
+		B0971BF904C642E2D7B2E88C /* Pods-Kml.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kml/Pods-Kml.debug.xcconfig"; sourceTree = "<group>"; };
 		B7B3E70349A0F777E14510F3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6CD36D350341721FDD198C3 /* Pods-Kml.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kml/Pods-Kml.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +78,8 @@
 		0B203649AAC095C0116C2948 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				97D85CDBDFCCD01F9449494B /* Pods-Kml.debug.xcconfig */,
-				F6CD36D350341721FDD198C3 /* Pods-Kml.release.xcconfig */,
+				B0971BF904C642E2D7B2E88C /* Pods-Kml.debug.xcconfig */,
+				96833CD4EA7EA91D7D8331B4 /* Pods-Kml.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -365,7 +365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -424,7 +424,6 @@
 /* Begin XCBuildConfiguration section */
 		78E3D7DF1B815BE000170097 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97D85CDBDFCCD01F9449494B /* Pods-Kml.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -473,7 +472,6 @@
 		};
 		78E3D7E01B815BE000170097 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6CD36D350341721FDD198C3 /* Pods-Kml.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -515,7 +513,7 @@
 		};
 		78E3D7E21B815BE000170097 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97D85CDBDFCCD01F9449494B /* Pods-Kml.debug.xcconfig */;
+			baseConfigurationReference = B0971BF904C642E2D7B2E88C /* Pods-Kml.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -531,7 +529,7 @@
 		};
 		78E3D7E31B815BE000170097 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6CD36D350341721FDD198C3 /* Pods-Kml.release.xcconfig */;
+			baseConfigurationReference = 96833CD4EA7EA91D7D8331B4 /* Pods-Kml.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -547,9 +545,10 @@
 		};
 		78E3D7E51B815BE000170097 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97D85CDBDFCCD01F9449494B /* Pods-Kml.debug.xcconfig */;
+			baseConfigurationReference = 96833CD4EA7EA91D7D8331B4 /* Pods-Kml.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -569,9 +568,10 @@
 		};
 		78E3D7E61B815BE000170097 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6CD36D350341721FDD198C3 /* Pods-Kml.release.xcconfig */;
+			baseConfigurationReference = 96833CD4EA7EA91D7D8331B4 /* Pods-Kml.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
