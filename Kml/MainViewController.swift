@@ -30,17 +30,17 @@ class MainViewController: UITableViewController {
 
 extension MainViewController { // UITableViewDataSource
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("Sample") {
-            cell.textLabel?.text = dataSource[indexPath.row].label
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "Sample") {
+            cell.textLabel?.text = dataSource[(indexPath as NSIndexPath).row].label
             return cell
         }
         return UITableViewCell()
@@ -48,11 +48,11 @@ extension MainViewController { // UITableViewDataSource
 }
 
 extension MainViewController { // UITableViewDelegate
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let klass = dataSource[indexPath.row].klass
-        let nibName = dataSource[indexPath.row].nib
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let klass = dataSource[(indexPath as NSIndexPath).row].klass
+        let nibName = dataSource[(indexPath as NSIndexPath).row].nib
         let controller: UIViewController = klass.init(nibName: nibName, bundle: nil)
-        controller.title = dataSource[indexPath.row].label
+        controller.title = dataSource[(indexPath as NSIndexPath).row].label
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }

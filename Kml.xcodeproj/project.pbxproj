@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30175AFC733F3AD031F32C0B /* Pods_Kml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0597E1AC11EBC60AF4E981A1 /* Pods_Kml.framework */; };
 		784DBC3C1B820575007748FB /* PlacemarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784DBC3A1B820575007748FB /* PlacemarkViewController.swift */; };
 		784DBC3D1B820575007748FB /* PlacemarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784DBC3B1B820575007748FB /* PlacemarkViewController.xib */; };
 		784DBC3F1B82FBD4007748FB /* sample.kml in Resources */ = {isa = PBXBuildFile; fileRef = 784DBC3E1B82FBD4007748FB /* sample.kml */; };
@@ -20,7 +21,6 @@
 		78E3D7DE1B815BE000170097 /* KmlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E3D7DD1B815BE000170097 /* KmlTests.swift */; };
 		78FACAA31B81EF0A0078BF26 /* KML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FACAA21B81EF0A0078BF26 /* KML.swift */; };
 		78FACAA51B81EF490078BF26 /* KML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FACAA21B81EF0A0078BF26 /* KML.swift */; };
-		ED834E7B566C17C53BF2F61A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B3E70349A0F777E14510F3 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		365454951C38C45192FC24FB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		0597E1AC11EBC60AF4E981A1 /* Pods_Kml.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kml.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		784DBC3A1B820575007748FB /* PlacemarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacemarkViewController.swift; path = Examples/Placemark/PlacemarkViewController.swift; sourceTree = "<group>"; };
 		784DBC3B1B820575007748FB /* PlacemarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlacemarkViewController.xib; path = Examples/Placemark/PlacemarkViewController.xib; sourceTree = "<group>"; };
 		784DBC3E1B82FBD4007748FB /* sample.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sample.kml; sourceTree = "<group>"; };
@@ -51,8 +51,9 @@
 		78E3D7DC1B815BE000170097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E3D7DD1B815BE000170097 /* KmlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KmlTests.swift; sourceTree = "<group>"; };
 		78FACAA21B81EF0A0078BF26 /* KML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KML.swift; sourceTree = "<group>"; };
-		928146AA72E2905D4BF3920B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		97D85CDBDFCCD01F9449494B /* Pods-Kml.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kml/Pods-Kml.debug.xcconfig"; sourceTree = "<group>"; };
 		B7B3E70349A0F777E14510F3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6CD36D350341721FDD198C3 /* Pods-Kml.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kml/Pods-Kml.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED834E7B566C17C53BF2F61A /* Pods.framework in Frameworks */,
+				30175AFC733F3AD031F32C0B /* Pods_Kml.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,10 +75,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B203649AAC095C0116C2948 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				97D85CDBDFCCD01F9449494B /* Pods-Kml.debug.xcconfig */,
+				F6CD36D350341721FDD198C3 /* Pods-Kml.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		44469B8E6D94BE8E551DF426 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				B7B3E70349A0F777E14510F3 /* Pods.framework */,
+				0597E1AC11EBC60AF4E981A1 /* Pods_Kml.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,8 +127,8 @@
 				78E3D7C41B815BE000170097 /* Kml */,
 				78E3D7DA1B815BE000170097 /* KmlTests */,
 				78E3D7C31B815BE000170097 /* Products */,
-				9749C775CD0BF5AD95E121DC /* Pods */,
 				44469B8E6D94BE8E551DF426 /* Frameworks */,
+				0B203649AAC095C0116C2948 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,15 +189,6 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		9749C775CD0BF5AD95E121DC /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				365454951C38C45192FC24FB /* Pods.debug.xcconfig */,
-				928146AA72E2905D4BF3920B /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -194,13 +196,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78E3D7E11B815BE000170097 /* Build configuration list for PBXNativeTarget "Kml" */;
 			buildPhases = (
-				3F8DF21B8803C2EF1B838F9E /* Check Pods Manifest.lock */,
+				AFE9B6E2FD93DD9498E8AF03 /* [CP] Check Pods Manifest.lock */,
 				78E3D7BE1B815BE000170097 /* Sources */,
 				78E3D7BF1B815BE000170097 /* Frameworks */,
 				78E3D7C01B815BE000170097 /* Resources */,
 				78E3D7E71B81600D00170097 /* ShellScript */,
-				8AD06ADC0DC98DDB39BB54F1 /* Embed Pods Frameworks */,
-				F675D246A582FDE9B8DBAA03 /* Copy Pods Resources */,
+				62894E029B21EB4F9BB1F654 /* [CP] Embed Pods Frameworks */,
+				0C9B7C1FC6FA6992B77E4B54 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -238,14 +240,16 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = asus4;
 				TargetAttributes = {
 					78E3D7C11B815BE000170097 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 					};
 					78E3D7D61B815BE000170097 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 						TestTargetID = 78E3D7C11B815BE000170097;
 					};
 				};
@@ -293,19 +297,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3F8DF21B8803C2EF1B838F9E /* Check Pods Manifest.lock */ = {
+		0C9B7C1FC6FA6992B77E4B54 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kml/Pods-Kml-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62894E029B21EB4F9BB1F654 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kml/Pods-Kml-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		78E3D7E71B81600D00170097 /* ShellScript */ = {
@@ -334,34 +353,19 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint --path Source\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		8AD06ADC0DC98DDB39BB54F1 /* Embed Pods Frameworks */ = {
+		AFE9B6E2FD93DD9498E8AF03 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F675D246A582FDE9B8DBAA03 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -431,14 +435,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -476,8 +483,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -496,6 +505,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -503,31 +513,36 @@
 		};
 		78E3D7E21B815BE000170097 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 365454951C38C45192FC24FB /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 97D85CDBDFCCD01F9449494B /* Pods-Kml.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Kml/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.asus4.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		78E3D7E31B815BE000170097 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 928146AA72E2905D4BF3920B /* Pods.release.xcconfig */;
+			baseConfigurationReference = F6CD36D350341721FDD198C3 /* Pods-Kml.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Kml/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.asus4.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		78E3D7E51B815BE000170097 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 365454951C38C45192FC24FB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -540,14 +555,15 @@
 				);
 				INFOPLIST_FILE = KmlTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.asus4.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kml.app/Kml";
 			};
 			name = Debug;
 		};
 		78E3D7E61B815BE000170097 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 928146AA72E2905D4BF3920B /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -556,7 +572,9 @@
 				);
 				INFOPLIST_FILE = KmlTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.asus4.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kml.app/Kml";
 			};
 			name = Release;
