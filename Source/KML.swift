@@ -395,7 +395,10 @@ open class KMLPlacemark: KMLElement {
     open var style: KMLStyle?
 
     public required init(_ element: AEXMLElement) {
-        styleUrl = element["styleUrl"].string.subString(1) // remove #
+        styleUrl = element["styleUrl"].string
+        if !styleUrl.isEmpty {
+            styleUrl = element["styleUrl"].string.subString(1) // remove #
+        }
         let _description: AEXMLElement = element["description"]
         if element.error == nil {
             description = _description.string
