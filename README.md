@@ -6,11 +6,15 @@
 Simple KML parser for Swift.  
 
 ## Installation
-
+For just the parsing library
+```
+pod 'Kml.swift/Core'
+```
+Or for parsing with MapKit integration
 ```
 pod 'Kml.swift/MapKit'
 ```
-or
+Or for parsing with Mapbox integration
 ```
 pod 'Kml.swift/Mapbox'
 ```
