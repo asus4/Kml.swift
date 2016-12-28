@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "https://twitter.com/asus4"
   s.ios.deployment_target = '8.0'
 
-  s.source = { :git => 'https://github.com/gregpardo/Kml.swift.git', :tag => s.version }
+  s.source = { :git => 'https://github.com/asus4/Kml.swift.git', :tag => s.version }
   s.default_subspec = "Core"
 
   s.subspec "Core" do |ss|
