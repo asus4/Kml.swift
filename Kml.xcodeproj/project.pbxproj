@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		30175AFC733F3AD031F32C0B /* Pods_Kml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0597E1AC11EBC60AF4E981A1 /* Pods_Kml.framework */; };
+		43FFCB0E1E1439E800148916 /* KML+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FFCB0D1E1439E800148916 /* KML+MapKit.swift */; };
+		43FFCB181E143C9D00148916 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FFCB171E143C9D00148916 /* AppDelegate.swift */; };
+		43FFCB1A1E143C9D00148916 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FFCB191E143C9D00148916 /* MainViewController.swift */; };
+		43FFCB1D1E143C9D00148916 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43FFCB1B1E143C9D00148916 /* Main.storyboard */; };
+		43FFCB1F1E143C9D00148916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43FFCB1E1E143C9D00148916 /* Assets.xcassets */; };
+		43FFCB221E143C9D00148916 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43FFCB201E143C9D00148916 /* LaunchScreen.storyboard */; };
+		43FFCB281E143CE100148916 /* sample.kml in Resources */ = {isa = PBXBuildFile; fileRef = 43FFCB271E143CE100148916 /* sample.kml */; };
+		43FFCB301E143D9800148916 /* PathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FFCB2B1E143D9800148916 /* PathViewController.swift */; };
+		43FFCB311E143D9800148916 /* PathViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43FFCB2C1E143D9800148916 /* PathViewController.xib */; };
+		43FFCB321E143D9800148916 /* PlacemarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FFCB2E1E143D9800148916 /* PlacemarkViewController.swift */; };
+		43FFCB331E143D9800148916 /* PlacemarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43FFCB2F1E143D9800148916 /* PlacemarkViewController.xib */; };
+		43FFCB341E143E4000148916 /* KML+Mapbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FFCB0F1E143B3C00148916 /* KML+Mapbox.swift */; };
+		43FFCB351E14415300148916 /* KML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FACAA21B81EF0A0078BF26 /* KML.swift */; };
+		43FFCB361E14415500148916 /* KML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FACAA21B81EF0A0078BF26 /* KML.swift */; };
 		784DBC3C1B820575007748FB /* PlacemarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784DBC3A1B820575007748FB /* PlacemarkViewController.swift */; };
 		784DBC3D1B820575007748FB /* PlacemarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784DBC3B1B820575007748FB /* PlacemarkViewController.xib */; };
 		784DBC3F1B82FBD4007748FB /* sample.kml in Resources */ = {isa = PBXBuildFile; fileRef = 784DBC3E1B82FBD4007748FB /* sample.kml */; };
@@ -20,7 +34,7 @@
 		78E3D7D21B815BE000170097 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E3D7D01B815BE000170097 /* LaunchScreen.xib */; };
 		78E3D7DE1B815BE000170097 /* KmlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E3D7DD1B815BE000170097 /* KmlTests.swift */; };
 		78FACAA31B81EF0A0078BF26 /* KML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FACAA21B81EF0A0078BF26 /* KML.swift */; };
-		78FACAA51B81EF490078BF26 /* KML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FACAA21B81EF0A0078BF26 /* KML.swift */; };
+		C03FF1026D992E7A788DA791 /* Pods_Kml_Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD4255B4AD0974A3F07E821C /* Pods_Kml_Mapbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +49,22 @@
 
 /* Begin PBXFileReference section */
 		0597E1AC11EBC60AF4E981A1 /* Pods_Kml.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kml.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C813861CBD80225346FB756 /* Pods-Kml-Mapbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml-Mapbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kml-Mapbox/Pods-Kml-Mapbox.debug.xcconfig"; sourceTree = "<group>"; };
+		43FFCB0D1E1439E800148916 /* KML+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KML+MapKit.swift"; sourceTree = "<group>"; };
+		43FFCB0F1E143B3C00148916 /* KML+Mapbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KML+Mapbox.swift"; sourceTree = "<group>"; };
+		43FFCB151E143C9D00148916 /* Kml-Mapbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kml-Mapbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43FFCB171E143C9D00148916 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		43FFCB191E143C9D00148916 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		43FFCB1C1E143C9D00148916 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		43FFCB1E1E143C9D00148916 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43FFCB211E143C9D00148916 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		43FFCB231E143C9D00148916 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43FFCB271E143CE100148916 /* sample.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sample.kml; sourceTree = "<group>"; };
+		43FFCB2B1E143D9800148916 /* PathViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathViewController.swift; sourceTree = "<group>"; };
+		43FFCB2C1E143D9800148916 /* PathViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PathViewController.xib; sourceTree = "<group>"; };
+		43FFCB2E1E143D9800148916 /* PlacemarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacemarkViewController.swift; sourceTree = "<group>"; };
+		43FFCB2F1E143D9800148916 /* PlacemarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlacemarkViewController.xib; sourceTree = "<group>"; };
+		5D8EFAC705FE4BE17DF50577 /* Pods-Kml.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kml/Pods-Kml.release.xcconfig"; sourceTree = "<group>"; };
 		784DBC3A1B820575007748FB /* PlacemarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacemarkViewController.swift; path = Examples/Placemark/PlacemarkViewController.swift; sourceTree = "<group>"; };
 		784DBC3B1B820575007748FB /* PlacemarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlacemarkViewController.xib; path = Examples/Placemark/PlacemarkViewController.xib; sourceTree = "<group>"; };
 		784DBC3E1B82FBD4007748FB /* sample.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sample.kml; sourceTree = "<group>"; };
@@ -51,12 +81,21 @@
 		78E3D7DC1B815BE000170097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E3D7DD1B815BE000170097 /* KmlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KmlTests.swift; sourceTree = "<group>"; };
 		78FACAA21B81EF0A0078BF26 /* KML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KML.swift; sourceTree = "<group>"; };
-		96833CD4EA7EA91D7D8331B4 /* Pods-Kml.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kml/Pods-Kml.release.xcconfig"; sourceTree = "<group>"; };
+		AD4255B4AD0974A3F07E821C /* Pods_Kml_Mapbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kml_Mapbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0971BF904C642E2D7B2E88C /* Pods-Kml.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kml/Pods-Kml.debug.xcconfig"; sourceTree = "<group>"; };
 		B7B3E70349A0F777E14510F3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAA38A73EA50963A6107A224 /* Pods-Kml-Mapbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml-Mapbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kml-Mapbox/Pods-Kml-Mapbox.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		43FFCB121E143C9D00148916 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C03FF1026D992E7A788DA791 /* Pods_Kml_Mapbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		78E3D7BF1B815BE000170097 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -79,9 +118,69 @@
 			isa = PBXGroup;
 			children = (
 				B0971BF904C642E2D7B2E88C /* Pods-Kml.debug.xcconfig */,
-				96833CD4EA7EA91D7D8331B4 /* Pods-Kml.release.xcconfig */,
+				5D8EFAC705FE4BE17DF50577 /* Pods-Kml.release.xcconfig */,
+				0C813861CBD80225346FB756 /* Pods-Kml-Mapbox.debug.xcconfig */,
+				DAA38A73EA50963A6107A224 /* Pods-Kml-Mapbox.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		43FFCB0B1E1439C800148916 /* Mapbox */ = {
+			isa = PBXGroup;
+			children = (
+				43FFCB0F1E143B3C00148916 /* KML+Mapbox.swift */,
+			);
+			path = Mapbox;
+			sourceTree = "<group>";
+		};
+		43FFCB0C1E1439C800148916 /* MapKit */ = {
+			isa = PBXGroup;
+			children = (
+				43FFCB0D1E1439E800148916 /* KML+MapKit.swift */,
+			);
+			path = MapKit;
+			sourceTree = "<group>";
+		};
+		43FFCB161E143C9D00148916 /* Kml-Mapbox */ = {
+			isa = PBXGroup;
+			children = (
+				43FFCB291E143D9800148916 /* Examples */,
+				43FFCB271E143CE100148916 /* sample.kml */,
+				43FFCB171E143C9D00148916 /* AppDelegate.swift */,
+				43FFCB191E143C9D00148916 /* MainViewController.swift */,
+				43FFCB1B1E143C9D00148916 /* Main.storyboard */,
+				43FFCB1E1E143C9D00148916 /* Assets.xcassets */,
+				43FFCB201E143C9D00148916 /* LaunchScreen.storyboard */,
+				43FFCB231E143C9D00148916 /* Info.plist */,
+			);
+			path = "Kml-Mapbox";
+			sourceTree = "<group>";
+		};
+		43FFCB291E143D9800148916 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				43FFCB2A1E143D9800148916 /* Path */,
+				43FFCB2D1E143D9800148916 /* Placemark */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
+		43FFCB2A1E143D9800148916 /* Path */ = {
+			isa = PBXGroup;
+			children = (
+				43FFCB2B1E143D9800148916 /* PathViewController.swift */,
+				43FFCB2C1E143D9800148916 /* PathViewController.xib */,
+			);
+			path = Path;
+			sourceTree = "<group>";
+		};
+		43FFCB2D1E143D9800148916 /* Placemark */ = {
+			isa = PBXGroup;
+			children = (
+				43FFCB2E1E143D9800148916 /* PlacemarkViewController.swift */,
+				43FFCB2F1E143D9800148916 /* PlacemarkViewController.xib */,
+			);
+			path = Placemark;
 			sourceTree = "<group>";
 		};
 		44469B8E6D94BE8E551DF426 /* Frameworks */ = {
@@ -89,6 +188,7 @@
 			children = (
 				B7B3E70349A0F777E14510F3 /* Pods.framework */,
 				0597E1AC11EBC60AF4E981A1 /* Pods_Kml.framework */,
+				AD4255B4AD0974A3F07E821C /* Pods_Kml_Mapbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -126,6 +226,7 @@
 				78FACAA11B81EF0A0078BF26 /* Source */,
 				78E3D7C41B815BE000170097 /* Kml */,
 				78E3D7DA1B815BE000170097 /* KmlTests */,
+				43FFCB161E143C9D00148916 /* Kml-Mapbox */,
 				78E3D7C31B815BE000170097 /* Products */,
 				44469B8E6D94BE8E551DF426 /* Frameworks */,
 				0B203649AAC095C0116C2948 /* Pods */,
@@ -137,6 +238,7 @@
 			children = (
 				78E3D7C21B815BE000170097 /* Kml.app */,
 				78E3D7D71B815BE000170097 /* KmlTests.xctest */,
+				43FFCB151E143C9D00148916 /* Kml-Mapbox.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,6 +286,8 @@
 		78FACAA11B81EF0A0078BF26 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				43FFCB0B1E1439C800148916 /* Mapbox */,
+				43FFCB0C1E1439C800148916 /* MapKit */,
 				78FACAA21B81EF0A0078BF26 /* KML.swift */,
 			);
 			path = Source;
@@ -192,6 +296,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		43FFCB141E143C9D00148916 /* Kml-Mapbox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43FFCB241E143C9D00148916 /* Build configuration list for PBXNativeTarget "Kml-Mapbox" */;
+			buildPhases = (
+				E37BBBEBF220D2E44BB677C0 /* [CP] Check Pods Manifest.lock */,
+				43FFCB111E143C9D00148916 /* Sources */,
+				43FFCB121E143C9D00148916 /* Frameworks */,
+				43FFCB131E143C9D00148916 /* Resources */,
+				6E7BD0CF0B24E25CF3C0E292 /* [CP] Embed Pods Frameworks */,
+				F884AF2414FE88BF1A357482 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Kml-Mapbox";
+			productName = "Kml-Mapbox";
+			productReference = 43FFCB151E143C9D00148916 /* Kml-Mapbox.app */;
+			productType = "com.apple.product-type.application";
+		};
 		78E3D7C11B815BE000170097 /* Kml */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78E3D7E11B815BE000170097 /* Build configuration list for PBXNativeTarget "Kml" */;
@@ -239,10 +363,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = asus4;
 				TargetAttributes = {
+					43FFCB141E143C9D00148916 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+					};
 					78E3D7C11B815BE000170097 = {
 						CreatedOnToolsVersion = 6.4;
 						LastSwiftMigration = 0800;
@@ -269,11 +397,25 @@
 			targets = (
 				78E3D7C11B815BE000170097 /* Kml */,
 				78E3D7D61B815BE000170097 /* KmlTests */,
+				43FFCB141E143C9D00148916 /* Kml-Mapbox */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		43FFCB131E143C9D00148916 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43FFCB221E143C9D00148916 /* LaunchScreen.storyboard in Resources */,
+				43FFCB331E143D9800148916 /* PlacemarkViewController.xib in Resources */,
+				43FFCB1F1E143C9D00148916 /* Assets.xcassets in Resources */,
+				43FFCB311E143D9800148916 /* PathViewController.xib in Resources */,
+				43FFCB281E143CE100148916 /* sample.kml in Resources */,
+				43FFCB1D1E143C9D00148916 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		78E3D7C01B815BE000170097 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -327,6 +469,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kml/Pods-Kml-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6E7BD0CF0B24E25CF3C0E292 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kml-Mapbox/Pods-Kml-Mapbox-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		78E3D7E71B81600D00170097 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -368,15 +525,59 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		E37BBBEBF220D2E44BB677C0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F884AF2414FE88BF1A357482 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kml-Mapbox/Pods-Kml-Mapbox-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		43FFCB111E143C9D00148916 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43FFCB351E14415300148916 /* KML.swift in Sources */,
+				43FFCB1A1E143C9D00148916 /* MainViewController.swift in Sources */,
+				43FFCB181E143C9D00148916 /* AppDelegate.swift in Sources */,
+				43FFCB301E143D9800148916 /* PathViewController.swift in Sources */,
+				43FFCB321E143D9800148916 /* PlacemarkViewController.swift in Sources */,
+				43FFCB341E143E4000148916 /* KML+Mapbox.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		78E3D7BE1B815BE000170097 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				78FACAA31B81EF0A0078BF26 /* KML.swift in Sources */,
 				78E3D7CA1B815BE000170097 /* MainViewController.swift in Sources */,
+				43FFCB0E1E1439E800148916 /* KML+MapKit.swift in Sources */,
 				78E3D7C81B815BE000170097 /* AppDelegate.swift in Sources */,
 				784DBC3C1B820575007748FB /* PlacemarkViewController.swift in Sources */,
 				784DBC431B82FE94007748FB /* PathViewController.swift in Sources */,
@@ -387,7 +588,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78FACAA51B81EF490078BF26 /* KML.swift in Sources */,
+				43FFCB361E14415500148916 /* KML.swift in Sources */,
 				78E3D7DE1B815BE000170097 /* KmlTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +604,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		43FFCB1B1E143C9D00148916 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				43FFCB1C1E143C9D00148916 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		43FFCB201E143C9D00148916 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				43FFCB211E143C9D00148916 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		78E3D7CB1B815BE000170097 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -422,6 +639,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		43FFCB251E143C9D00148916 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C813861CBD80225346FB756 /* Pods-Kml-Mapbox.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "Kml-Mapbox/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.asus4.Kml-Mapbox";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		43FFCB261E143C9D00148916 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAA38A73EA50963A6107A224 /* Pods-Kml-Mapbox.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				INFOPLIST_FILE = "Kml-Mapbox/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.asus4.Kml-Mapbox";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		78E3D7DF1B815BE000170097 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -521,7 +772,7 @@
 				INFOPLIST_FILE = Kml/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.asus4.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.asus4.Kml;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -529,7 +780,7 @@
 		};
 		78E3D7E31B815BE000170097 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96833CD4EA7EA91D7D8331B4 /* Pods-Kml.release.xcconfig */;
+			baseConfigurationReference = 5D8EFAC705FE4BE17DF50577 /* Pods-Kml.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -537,7 +788,7 @@
 				INFOPLIST_FILE = Kml/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.asus4.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.asus4.Kml;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -545,7 +796,6 @@
 		};
 		78E3D7E51B815BE000170097 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96833CD4EA7EA91D7D8331B4 /* Pods-Kml.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = "";
@@ -568,7 +818,6 @@
 		};
 		78E3D7E61B815BE000170097 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96833CD4EA7EA91D7D8331B4 /* Pods-Kml.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = "";
@@ -588,6 +837,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		43FFCB241E143C9D00148916 /* Build configuration list for PBXNativeTarget "Kml-Mapbox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43FFCB251E143C9D00148916 /* Debug */,
+				43FFCB261E143C9D00148916 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		78E3D7BD1B815BE000170097 /* Build configuration list for PBXProject "Kml" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

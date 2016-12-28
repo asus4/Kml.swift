@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "Kml.swift"
-  s.version      = "0.3.0"
+  s.version      = "0.4.0"
   s.summary      = "Simple KML parser for Swift."
 
   s.homepage     = "https://github.com/asus4/Kml.swift"
@@ -10,9 +10,25 @@ Pod::Spec.new do |s|
   s.social_media_url   = "https://twitter.com/asus4"
   s.ios.deployment_target = '8.0'
 
-  s.source = { :git => 'https://github.com/asus4/Kml.swift.git', :tag => s.version }
-  s.source_files = 'Source/*.swift'
-  s.dependency 'AEXML'
+  s.source = { :git => 'https://github.com/gregpardo/Kml.swift.git', :tag => s.version }
+  s.default_subspec = "Core"
 
+  s.subspec "Core" do |ss|
+    ss.source_files  = "Source/*.swift"
+    ss.dependency 'AEXML'
+    ss.frameworks  = "Foundation"
+  end
 
+  s.subspec "MapKit" do |ss|
+    ss.source_files  = "Source/MapKit/*.swift"
+    ss.dependency "Kml.swift/Core"
+    ss.frameworks  = "Foundation", "MapKit"
+  end
+
+  s.subspec "Mapbox" do |ss|
+    ss.source_files  = "Source/Mapbox/*.swift"
+    ss.dependency "Kml.swift/Core"
+    ss.dependency "Mapbox-iOS-SDK", "~> 3.3"
+    ss.frameworks  = "Foundation"
+  end
 end
