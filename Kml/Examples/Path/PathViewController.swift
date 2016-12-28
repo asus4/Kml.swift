@@ -43,11 +43,11 @@ extension PathViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let overlayPolyline = overlay as? KMLOverlayPolyline {
             // return MKPolylineRenderer
-            return overlayPolyline.renderer()
+            return overlayPolyline.renderer() as! MKOverlayRenderer
         }
         if let overlayPolygon = overlay as? KMLOverlayPolygon {
             // return MKPolygonRenderer
-            return overlayPolygon.renderer()
+            return overlayPolygon.renderer() as! MKOverlayRenderer
         }
         return MKOverlayRenderer(overlay: overlay)
     }

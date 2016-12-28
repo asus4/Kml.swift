@@ -5,13 +5,13 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlacemarkViewController" customModule="Kml" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlacemarkViewController" customModule="Kml_Mapbox" customModuleProvider="target">
             <connections>
-                <outlet property="mapView" destination="TfV-KJ-7PJ" id="JUL-q4-UAa"/>
+                <outlet property="mapView" destination="Dvk-9c-mnt" id="eDO-dI-b6E"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,16 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TfV-KJ-7PJ">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dvk-9c-mnt" customClass="MGLMapView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                </mapView>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="TfV-KJ-7PJ" secondAttribute="bottom" id="0FD-1A-uog"/>
-                <constraint firstItem="TfV-KJ-7PJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Pq1-OA-xli"/>
-                <constraint firstAttribute="trailing" secondItem="TfV-KJ-7PJ" secondAttribute="trailing" id="Zta-SR-4ph"/>
-                <constraint firstItem="TfV-KJ-7PJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fch-12-hig"/>
+                <constraint firstItem="Dvk-9c-mnt" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="GIX-ne-6cs"/>
+                <constraint firstItem="Dvk-9c-mnt" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="Jd0-Mp-Rzu"/>
+                <constraint firstItem="Dvk-9c-mnt" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="h0K-yB-PUX"/>
+                <constraint firstItem="Dvk-9c-mnt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="sJO-DD-ZXM"/>
             </constraints>
         </view>
     </objects>

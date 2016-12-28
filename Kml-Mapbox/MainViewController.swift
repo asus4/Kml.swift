@@ -1,38 +1,43 @@
 //
 //  ViewController.swift
-//  Kml
+//  Kml-Mapbox
 //
-//  Created by Koki Ibukuro on 8/17/15.
-//  Copyright (c) 2015 asus4. All rights reserved.
+//  Created by Greg Pardo on 12/28/16.
+//  Copyright © 2016 asus4. All rights reserved.
 //
 
 import UIKit
+import Mapbox
 import CoreLocation
 
-class MainViewController: UITableViewController {
+let MapboxAccessToken = "<# your Mapbox access token #>"
 
+class MainViewController: UITableViewController {
+    
     let locationManager = CLLocationManager()
     let dataSource: [(label: String, klass: UIViewController.Type, nib: String)] = [
         ("Placemark", PlacemarkViewController.self, "PlacemarkViewController"),
         ("Path", PathViewController.self, "PathViewController"),
-    ]
-
+        ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        assert(MapboxAccessToken != "<# your Mapbox access token #>", "You must set `MapboxAccessToken` to your Mapbox access token.")
+        MGLAccountManager.setAccessToken(MapboxAccessToken)
         locationManager.requestAlwaysAuthorization()
     }
 }
 
 extension MainViewController { // UITableViewDataSource
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Sample") {
             cell.textLabel?.text = dataSource[(indexPath as NSIndexPath).row].label

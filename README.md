@@ -5,10 +5,25 @@
 
 Simple KML parser for Swift.  
 
+## Installation
+For just the parsing library
+```
+pod 'Kml.swift/Core'
+```
+Or for parsing with MapKit integration
+```
+pod 'Kml.swift/MapKit'
+```
+Or for parsing with Mapbox integration
+```
+pod 'Kml.swift/Mapbox'
+```
+
 ## Libraries
 
 - [AEXML](https://github.com/tadija/AEXML) via cocoapods
 - [UIColor-Hex-Swift](https://github.com/yeahdongcn/UIColor-Hex-Swift) includes
+
 
 ## Supporting TAGs
 
