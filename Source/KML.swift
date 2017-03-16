@@ -29,6 +29,8 @@ public enum KMLTag: String {
     case Folder
     case Placemark
     case Icon
+    case ExtendedData
+    case Data
 
     public var str: String {
         return self.rawValue
@@ -50,7 +52,9 @@ public struct KMLConfig {
         KMLTag.Folder.str: KMLElement.self,
         KMLTag.Placemark.str: KMLPlacemark.self,
         KMLTag.Icon.str: KMLIcon.self,
-        KMLTag.IconStyle.str: KMLIconStyle.self
+        KMLTag.IconStyle.str: KMLIconStyle.self,
+        KMLTag.ExtendedData.str: KMLExtendedData.self,
+        KMLTag.Data.str: KMLData.self
     ]
 }
 
@@ -390,6 +394,7 @@ open class KMLPlacemark: KMLElement {
     open var lineString: KMLLineString?
     open var polygon: KMLPolygon?
     open var style: KMLStyle?
+    open var extendedData: KMLExtendedData?
 
     public required init(_ element: AEXMLElement) {
         let style = element["styleUrl"].string
@@ -409,6 +414,43 @@ open class KMLPlacemark: KMLElement {
         } else if let polygonGeometry = findElement(KMLPolygon.self) {
             polygon = polygonGeometry
         }
+        
+        extendedData = findElement(KMLExtendedData.self)
+    }
+}
+
+// MARK: - Extended Data
+
+open class KMLExtendedData: KMLElement {
+    open var data: [String: KMLData] = [:]
+    
+    public required init(_ element: AEXMLElement) {
+        super.init(element)
+        for dataElement in findElements(KMLData.self) {
+            self.data[dataElement.dataName] = dataElement
+        }
+    }
+}
+
+open class KMLData: KMLElement {
+    open var dataName: String = ""
+    open var displayName: String?
+    open var value: String?
+    
+    public required init(_ element: AEXMLElement) {
+        self.dataName = element.attributes["name"] ?? ""
+        
+        for child: AEXMLElement in element.children {
+            switch child.name {
+            case "displayName":
+                displayName = child.string
+            case "value":
+                value = child.string
+            default:
+                break
+            }
+        }
+        super.init(element)
     }
 }
 
