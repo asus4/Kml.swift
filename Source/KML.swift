@@ -466,6 +466,7 @@ open class KMLAnnotation: NSObject, MKAnnotation {
     open var title: String?
     open var subtitle: String?
     open var style: KMLStyle?
+    open var placemark: KMLPlacemark?
 
     init(_ coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
@@ -622,6 +623,7 @@ open class KMLDocument: KMLElement {
                 annotation.title = pointPlacemark.name
                 annotation.subtitle = pointPlacemark.description
                 annotation.style = pointPlacemark.style
+                annotation.placemark = pointPlacemark
 
                 self.annotations.append(annotation)
             }
