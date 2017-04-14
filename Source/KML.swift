@@ -210,9 +210,13 @@ open class KMLPolyStyle: KMLColorStyleGroup, KMLApplyStyle {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "fill":
-                fill = child.bool
+                if let childValue = child.bool {
+                fill = childValue
+                }
             case "outline":
-                outline = child.bool
+                if let childValue = child.bool {
+                    outline = childValue
+                }
             default:
                 break
             }
@@ -232,7 +236,9 @@ open class KMLLineStyle: KMLColorStyleGroup, KMLApplyStyle {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "width":
-                width = child.double
+                if let childValue = child.double {
+                    width = childValue
+                }
             default:
                 break
             }
@@ -256,9 +262,13 @@ open class KMLIconStyle: KMLColorStyleGroup {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "scale":
-                scale = child.double
+                if let scaleValue = child.double {
+                    scale = scaleValue
+                }
             case "heading":
-                heading = child.double
+                if let childValue = child.double {
+                    heading = childValue
+                }
             default:
                 break
             }
@@ -392,9 +402,9 @@ open class KMLPlacemark: KMLElement {
     open var style: KMLStyle?
 
     public required init(_ element: AEXMLElement) {
-        styleUrl = element["styleUrl"].string
-        if !styleUrl.isEmpty {
-            styleUrl = element["styleUrl"].string.subString(1) // remove #
+        let style = element["styleUrl"].string
+        if !style.isEmpty {
+            styleUrl = style.subString(1) // remove #
         }
         let _description: AEXMLElement = element["description"]
         if element.error == nil {
