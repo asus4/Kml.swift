@@ -16,19 +16,19 @@ https://developers.google.com/kml/documentation/kmlreference
 
 // Supporting tags
 public enum KMLTag: String {
-    case Style = "Style"
-    case StyleMap = "StyleMap"
-    case PolyStyle = "PolyStyle"
-    case LineStyle = "LineStyle"
-    case IconStyle = "IconStyle"
-    case BalloonStyle = "BalloonStyle"
-    case MultiGeometry = "MultiGeometry"
-    case Polygon = "Polygon"
-    case LineString = "LineString"
-    case Point = "Point"
-    case Folder = "Folder"
-    case Placemark = "Placemark"
-    case Icon = "Icon"
+    case Style
+    case StyleMap
+    case PolyStyle
+    case LineStyle
+    case IconStyle
+    case BalloonStyle
+    case MultiGeometry
+    case Polygon
+    case LineString
+    case Point
+    case Folder
+    case Placemark
+    case Icon
 
     public var str: String {
         return self.rawValue
@@ -37,20 +37,20 @@ public enum KMLTag: String {
 
 public struct KMLConfig {
     // Able to replace with customized parser
-    public static var tags: Dictionary<String, KMLElement.Type> = [
-        KMLTag.Style.str : KMLStyle.self,
-        KMLTag.StyleMap.str : KMLStyleMap.self,
-        KMLTag.PolyStyle.str : KMLPolyStyle.self,
-        KMLTag.LineStyle.str : KMLLineStyle.self,
-        KMLTag.BalloonStyle.str : KMLBalloonStyle.self,
-        KMLTag.MultiGeometry.str : KMLMultiGeometry.self,
-        KMLTag.Polygon.str : KMLPolygon.self,
-        KMLTag.LineString.str : KMLLineString.self,
-        KMLTag.Point.str : KMLPoint.self,
-        KMLTag.Folder.str : KMLElement.self,
-        KMLTag.Placemark.str : KMLPlacemark.self,
-        KMLTag.Icon.str : KMLIcon.self,
-        KMLTag.IconStyle.str : KMLIconStyle.self
+    public static var tags: [String: KMLElement.Type] = [
+        KMLTag.Style.str: KMLStyle.self,
+        KMLTag.StyleMap.str: KMLStyleMap.self,
+        KMLTag.PolyStyle.str: KMLPolyStyle.self,
+        KMLTag.LineStyle.str: KMLLineStyle.self,
+        KMLTag.BalloonStyle.str: KMLBalloonStyle.self,
+        KMLTag.MultiGeometry.str: KMLMultiGeometry.self,
+        KMLTag.Polygon.str: KMLPolygon.self,
+        KMLTag.LineString.str: KMLLineString.self,
+        KMLTag.Point.str: KMLPoint.self,
+        KMLTag.Folder.str: KMLElement.self,
+        KMLTag.Placemark.str: KMLPlacemark.self,
+        KMLTag.Icon.str: KMLIcon.self,
+        KMLTag.IconStyle.str: KMLIconStyle.self
     ]
 }
 
@@ -74,9 +74,9 @@ open class KMLElement {
 
     class func parseCoordinates(_ element: AEXMLElement) -> [CLLocationCoordinate2D] {
         var coordinates: [CLLocationCoordinate2D] = []
-        let lines: [String] = element.string.characters.split(omittingEmptySubsequences: true, whereSeparator:  {$0 == "\n" || $0 == " "}).map { String($0) }
-        for line: String in lines {
-            let points: [String] = line.characters.split(omittingEmptySubsequences: true, whereSeparator: {$0 == ","}).map { String($0) }
+        let lines: [String] = element.string.components(separatedBy: CharacterSet.whitespacesAndNewlines)
+        for line in lines {
+            let points: [String] = line.components(separatedBy: ",")
             assert(points.count >= 2, "points lenth is \(points)")
             coordinates.append(CLLocationCoordinate2DMake(atof(points[1]), atof(points[0])))
         }
@@ -160,8 +160,8 @@ open class KMLStyle: KMLElement, KMLApplyStyle {
 
 open class KMLStyleMap: KMLStyle {
 
-    var pairs: Dictionary<String, String>
-    var pairsRef: Dictionary<String, KMLStyle> = [:]
+    var pairs: [String: String]
+    var pairsRef: [String: KMLStyle] = [:]
     var normalStyle: KMLStyle? {
         return pairsRef["normal"]
     }
@@ -306,7 +306,6 @@ open class KMLIcon: KMLElement {
 
 }
 
-
 // MARK: - Drawings
 
 open class KMLMultiGeometry: KMLElement {
@@ -337,7 +336,6 @@ open class KMLPolygon: KMLElement {
         super.init(element)
     }
 }
-
 
 open class KMLLineString: KMLElement {
 
@@ -377,12 +375,11 @@ open class KMLPoint: KMLElement {
     }
 
     open class func parseCoordinate(_ str: String) -> CLLocationCoordinate2D {
-        let points: [String] = str.characters.split(omittingEmptySubsequences: true, whereSeparator: {$0 == ","}).map { String($0) }
+        let points: [String] = str.components(separatedBy: ",")
         assert(points.count >= 2, "points length is \(points)")
         return CLLocationCoordinate2DMake(atof(points[1]), atof(points[0]))
     }
 }
-
 
 // MARK: - Placemark
 
@@ -434,8 +431,7 @@ open class KMLAnnotation: NSObject, MKAnnotation {
 }
 
 open class KMLOverlayPolygon: MKPolygon, KMLOverlay {
-
-    open var style: KMLStyle? = nil
+    open var style: KMLStyle?
 
     open func renderer() -> MKOverlayRenderer {
         let renderer: MKPolygonRenderer = MKPolygonRenderer(polygon: self)
@@ -454,7 +450,7 @@ open class KMLOverlayPolygon: MKPolygon, KMLOverlay {
 
 open class KMLOverlayPolyline: MKPolyline, KMLOverlay {
 
-    open var style: KMLStyle? = nil
+    open var style: KMLStyle?
 
     open func renderer() -> MKOverlayRenderer {
         let renderer: MKPolylineRenderer = MKPolylineRenderer(polyline: self)
@@ -475,7 +471,7 @@ open class KMLOverlayPolyline: MKPolyline, KMLOverlay {
 open class KMLDocument: KMLElement {
     open var overlays: [MKOverlay] = []
     open var annotations: [KMLAnnotation] = []
-    open var styles: Dictionary<String, KMLStyle> = [:]
+    open var styles: [String: KMLStyle] = [:]
     open var placemarks: [KMLPlacemark] = []
 
     public required init(_ element: AEXMLElement) {
@@ -519,9 +515,7 @@ open class KMLDocument: KMLElement {
     }
 
     open var isError: Bool {
-        get {
-            return self.children.count == 0
-        }
+        return self.children.count == 0
     }
 
     fileprivate func initStyle() {
