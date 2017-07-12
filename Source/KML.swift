@@ -77,7 +77,7 @@ open class KMLElement {
         let lines: [String] = element.string.components(separatedBy: CharacterSet.whitespacesAndNewlines)
         for line in lines {
             let points: [String] = line.components(separatedBy: ",")
-            assert(points.count >= 2, "points lenth is \(points)")
+            guard points.count >= 2 else { continue }
             coordinates.append(CLLocationCoordinate2DMake(atof(points[1]), atof(points[0])))
         }
         return coordinates
