@@ -496,24 +496,26 @@ open class KMLDocument: KMLElement {
     }
 
     public convenience init? (url: URL, generateMapKitClasses: Bool=true) {
-        var element: AEXMLElement?
-
         if let data = try? Data(contentsOf: url) {
-            do {
-                let xmlDoc = try AEXMLDocument(xml: data)
-                element = xmlDoc.root["Document"]
-            } catch _ {
-                print("Could not parse XML.")
-                return nil
-            }
-            self.init(element!, generateMapKitClasses:generateMapKitClasses)
+            self.init(data: data, generateMapKitClasses: generateMapKitClasses)
         } else {
             print("Doesn't exist file at path - \(url)")
             let errorElement = AEXMLElement(name: "AEXMLError", value: "Doesn't exist file at path \(url)")
             errorElement.error = AEXMLError.parsingFailed
             self.init(errorElement, generateMapKitClasses:generateMapKitClasses)
         }
+    }
 
+    public convenience init? (data: Data, generateMapKitClasses: Bool=true) {
+        var element: AEXMLElement?
+        do {
+            let xmlDoc = try AEXMLDocument(xml: data)
+            element = xmlDoc.root["Document"]
+        } catch _ {
+            print("Could not parse XML.")
+            return nil
+        }
+        self.init(element!, generateMapKitClasses:generateMapKitClasses)
     }
 
     public convenience init(_ element: AEXMLElement, generateMapKitClasses: Bool) {
