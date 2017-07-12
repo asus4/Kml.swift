@@ -598,12 +598,25 @@ open class KMLDocument: KMLElement {
         }
     }
 
-    open class func parse(_ url: URL, generateMapKitClasses: Bool=true, callback: @escaping (KMLDocument) -> Void) {
+    open class func parse(url: URL, generateMapKitClasses: Bool=true, callback: @escaping (KMLDocument) -> Void) {
         // Background Task
         let bgQueue = DispatchQueue.global(qos: .default)
         let mainQueue: DispatchQueue = DispatchQueue.main
         bgQueue.async(execute: {
             if let doc: KMLDocument = KMLDocument(url: url, generateMapKitClasses:generateMapKitClasses) {
+                mainQueue.async(execute: {
+                    callback(doc)
+                })
+            }
+        })
+    }
+
+    open class func parse(data: Data, generateMapKitClasses: Bool=true, callback: @escaping (KMLDocument) -> Void) {
+        // Background Task
+        let bgQueue = DispatchQueue.global(qos: .default)
+        let mainQueue: DispatchQueue = DispatchQueue.main
+        bgQueue.async(execute: {
+            if let doc: KMLDocument = KMLDocument(data: data, generateMapKitClasses:generateMapKitClasses) {
                 mainQueue.async(execute: {
                     callback(doc)
                 })

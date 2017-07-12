@@ -27,7 +27,7 @@ class PlacemarkViewController: UIViewController {
 
     fileprivate func loadKml(_ path: String) {
         let url = Bundle.main.url(forResource: path, withExtension: "kml")
-        KMLDocument.parse(url!, callback:
+        KMLDocument.parse(url: url!, callback:
             { [unowned self] (kml) in
                 // Add and Zoom to annotations.
                 self.mapView.showAnnotations(kml.annotations, animated: true)
