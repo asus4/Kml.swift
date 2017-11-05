@@ -629,7 +629,7 @@ open class KMLDocument: KMLElement {
 
 private extension String {
     func subString(_ from: Int) -> String {
-        return self.substring(from: self.characters.index(self.startIndex, offsetBy: from))
+        return String(suffix(from: index(startIndex, offsetBy: from)))
     }
 }
 
@@ -646,7 +646,7 @@ private extension UIColor {
         let scanner = Scanner(string: kmlhex)
         var hexValue: CUnsignedLongLong = 0
         if scanner.scanHexInt64(&hexValue) {
-            switch kmlhex.characters.count {
+            switch kmlhex.count {
             case 3:
                 red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
                 green = CGFloat((hexValue & 0x0F0) >> 4)       / 15.0
