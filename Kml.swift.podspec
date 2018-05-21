@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
   s.source = { :git => 'https://github.com/asus4/Kml.swift.git', :tag => s.version }
   s.source_files = 'Source/*.swift'
-  s.dependency 'AEXML'
-
+  
+  s.dependency 'AEXML',   '4.3.0'
 
 end

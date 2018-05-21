@@ -77,7 +77,7 @@ open class KMLElement {
         let lines: [String] = element.string.components(separatedBy: CharacterSet.whitespacesAndNewlines)
         for line in lines {
             let points: [String] = line.components(separatedBy: ",")
-            assert(points.count >= 2, "points lenth is \(points)")
+            guard points.count >= 2 else { continue }
             coordinates.append(CLLocationCoordinate2DMake(atof(points[1]), atof(points[0])))
         }
         return coordinates
@@ -210,9 +210,13 @@ open class KMLPolyStyle: KMLColorStyleGroup, KMLApplyStyle {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "fill":
-                fill = child.bool
+                if let childValue = child.bool {
+                fill = childValue
+                }
             case "outline":
-                outline = child.bool
+                if let childValue = child.bool {
+                    outline = childValue
+                }
             default:
                 break
             }
@@ -232,7 +236,9 @@ open class KMLLineStyle: KMLColorStyleGroup, KMLApplyStyle {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "width":
-                width = child.double
+                if let childValue = child.double {
+                    width = childValue
+                }
             default:
                 break
             }
@@ -256,9 +262,13 @@ open class KMLIconStyle: KMLColorStyleGroup {
         for child: AEXMLElement in element.children {
             switch child.name {
             case "scale":
-                scale = child.double
+                if let scaleValue = child.double {
+                    scale = scaleValue
+                }
             case "heading":
-                heading = child.double
+                if let childValue = child.double {
+                    heading = childValue
+                }
             default:
                 break
             }
@@ -486,24 +496,26 @@ open class KMLDocument: KMLElement {
     }
 
     public convenience init? (url: URL, generateMapKitClasses: Bool=true) {
-        var element: AEXMLElement?
-
         if let data = try? Data(contentsOf: url) {
-            do {
-                let xmlDoc = try AEXMLDocument(xml: data)
-                element = xmlDoc.root["Document"]
-            } catch _ {
-                print("Could not parse XML.")
-                return nil
-            }
-            self.init(element!, generateMapKitClasses:generateMapKitClasses)
+            self.init(data: data, generateMapKitClasses: generateMapKitClasses)
         } else {
             print("Doesn't exist file at path - \(url)")
             let errorElement = AEXMLElement(name: "AEXMLError", value: "Doesn't exist file at path \(url)")
             errorElement.error = AEXMLError.parsingFailed
             self.init(errorElement, generateMapKitClasses:generateMapKitClasses)
         }
+    }
 
+    public convenience init? (data: Data, generateMapKitClasses: Bool=true) {
+        var element: AEXMLElement?
+        do {
+            let xmlDoc = try AEXMLDocument(xml: data)
+            element = xmlDoc.root["Document"]
+        } catch _ {
+            print("Could not parse XML.")
+            return nil
+        }
+        self.init(element!, generateMapKitClasses:generateMapKitClasses)
     }
 
     public convenience init(_ element: AEXMLElement, generateMapKitClasses: Bool) {
@@ -586,12 +598,25 @@ open class KMLDocument: KMLElement {
         }
     }
 
-    open class func parse(_ url: URL, generateMapKitClasses: Bool=true, callback: @escaping (KMLDocument) -> Void) {
+    open class func parse(url: URL, generateMapKitClasses: Bool=true, callback: @escaping (KMLDocument) -> Void) {
         // Background Task
         let bgQueue = DispatchQueue.global(qos: .default)
         let mainQueue: DispatchQueue = DispatchQueue.main
         bgQueue.async(execute: {
             if let doc: KMLDocument = KMLDocument(url: url, generateMapKitClasses:generateMapKitClasses) {
+                mainQueue.async(execute: {
+                    callback(doc)
+                })
+            }
+        })
+    }
+
+    open class func parse(data: Data, generateMapKitClasses: Bool=true, callback: @escaping (KMLDocument) -> Void) {
+        // Background Task
+        let bgQueue = DispatchQueue.global(qos: .default)
+        let mainQueue: DispatchQueue = DispatchQueue.main
+        bgQueue.async(execute: {
+            if let doc: KMLDocument = KMLDocument(data: data, generateMapKitClasses:generateMapKitClasses) {
                 mainQueue.async(execute: {
                     callback(doc)
                 })
@@ -604,7 +629,7 @@ open class KMLDocument: KMLElement {
 
 private extension String {
     func subString(_ from: Int) -> String {
-        return self.substring(from: self.characters.index(self.startIndex, offsetBy: from))
+        return String(suffix(from: index(startIndex, offsetBy: from)))
     }
 }
 
@@ -621,7 +646,7 @@ private extension UIColor {
         let scanner = Scanner(string: kmlhex)
         var hexValue: CUnsignedLongLong = 0
         if scanner.scanHexInt64(&hexValue) {
-            switch kmlhex.characters.count {
+            switch kmlhex.count {
             case 3:
                 red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
                 green = CGFloat((hexValue & 0x0F0) >> 4)       / 15.0
