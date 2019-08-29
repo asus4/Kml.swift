@@ -268,6 +268,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -353,7 +354,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if type /usr/local/bin/swiftlint 2>/dev/null 1>/dev/null\nthen\n    /usr/local/bin/swiftlint lint --path Source\nfi";
+			shellScript = "#if type /usr/local/bin/swiftlint 2>/dev/null 1>/dev/null\n#then\n#    /usr/local/bin/swiftlint lint --path Source\n#fi\n";
 		};
 		78E3D7E81B81601500170097 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
