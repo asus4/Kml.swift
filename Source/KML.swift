@@ -629,7 +629,11 @@ open class KMLDocument: KMLElement {
 
 private extension String {
     func subString(_ from: Int) -> String {
-        return String(suffix(from: index(startIndex, offsetBy: from)))
+        if from < self.characters.count + 1 {
+            return self.substring(from: self.characters.index(self.startIndex, offsetBy: from))
+        } else {
+            return self
+        }
     }
 }
 
