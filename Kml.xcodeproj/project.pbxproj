@@ -249,7 +249,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = asus4;
 				TargetAttributes = {
 					78E3D7C11B815BE000170097 = {
@@ -265,10 +265,9 @@
 			};
 			buildConfigurationList = 78E3D7BD1B815BE000170097 /* Build configuration list for PBXProject "Kml" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
