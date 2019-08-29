@@ -312,7 +312,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Kml/Pods-Kml-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Kml/Pods-Kml-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AEXML/AEXML.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -321,7 +321,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kml/Pods-Kml-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kml/Pods-Kml-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		73AF317465F3D70634E0E7E4 /* [CP] Embed Pods Frameworks */ = {
@@ -330,7 +330,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KmlTests/Pods-KmlTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-KmlTests/Pods-KmlTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AEXML/AEXML.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -339,7 +339,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KmlTests/Pods-KmlTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KmlTests/Pods-KmlTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		78E3D7E71B81600D00170097 /* ShellScript */ = {
