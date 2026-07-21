@@ -56,6 +56,7 @@
 		78E3D7DC1B815BE000170097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E3D7DD1B815BE000170097 /* KmlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KmlTests.swift; sourceTree = "<group>"; };
 		78FACAA21B81EF0A0078BF26 /* KML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KML.swift; sourceTree = "<group>"; };
+		87EF67E42FF7AD66009F547D /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		B0971BF904C642E2D7B2E88C /* Pods-Kml.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kml.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kml/Pods-Kml.debug.xcconfig"; sourceTree = "<group>"; };
 		B7B3E70349A0F777E14510F3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +138,7 @@
 				78E3D7C31B815BE000170097 /* Products */,
 				44469B8E6D94BE8E551DF426 /* Frameworks */,
 				0B203649AAC095C0116C2948 /* Pods */,
+				87EF67E42FF7AD66009F547D /* Package.swift */,
 			);
 			sourceTree = "<group>";
 		};
