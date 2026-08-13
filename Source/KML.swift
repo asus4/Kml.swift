@@ -539,7 +539,9 @@ open class KMLDocument: KMLElement {
         if let _styles: [KMLStyleMap] = findElements(KMLStyleMap.self) {
             for style: KMLStyleMap in _styles {
                 for (key, value): (String, String) in style.pairs {
-                    style.addPairsRef(key, style: self.styles[value]!)
+                    if let styleRef = self.styles[value] {
+                        style.addPairsRef(key, style: styleRef)
+                    }
                 }
                 self.styles[style.styleId] = style
             }
